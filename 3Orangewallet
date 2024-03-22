@@ -1,0 +1,21 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("¿Cuál es tu número factorial?");
+        int numfactor = scanner.nextInt();
+        int resultado = 1;
+        int cont = 1;
+
+        if (numfactor > 0 && numfactor < 20) {
+            while (cont <= numfactor) {
+                resultado = resultado * cont;
+                cont = cont + 1;
+            }
+            System.out.println("El resultado de tu número factorial es: " + resultado);
+        } else {
+            System.out.println("Ingresa un número válido");
+        }
+    }
+}
