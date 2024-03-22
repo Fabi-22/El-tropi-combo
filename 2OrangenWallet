@@ -1,0 +1,29 @@
+import java.util.Scanner;
+
+public class Main {
+  public static void main(String[] args) {
+    Scanner sc= new Scanner (System.in);
+    String cont="123em", us= "Emily";
+    String usuario , password;
+    System.out.print("Ingresa tu usuario ");
+    usuario =sc.nextLine();
+    System.out.print ("ingresa tu contraseña: ");
+    password = sc.nextLine();
+    while  (cont.equals(password)==false) {
+      System.out.print("hay un error en tu usuario o tu password por favor ingresalo correctamente");
+      break;
+      }
+      while (us.equals(usuario)== false) {
+        System.out.print("hay un error en tu usuario o tu password por favor ingresalo correctamente");
+        break;
+       }
+    
+     System.out.println (" todo es coorecto bienvenido al Orange wallet") ;
+    
+    
+      
+    
+  }
+
+
+}
