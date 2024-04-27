@@ -1,0 +1,125 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.event.*;
+
+public class Usuario extends JPanel implements ActionListener{
+    private JLabel jcomp1;
+    private JLabel jcomp2;
+    private JLabel jcomp3;
+    private JLabel jcomp4;
+    private JLabel jcomp5;
+    private JLabel jcomp6;
+    private JTextField jcomp7;
+    private JTextField jcomp8;
+    private JTextField jcomp9;
+    private JTextField jcomp10;
+    private JTextField jcomp11;
+    private JButton jcomp12;
+    private JTextField jcomp13;
+    private JButton jcomp14;
+
+
+    public Usuario() {
+        //construct components
+        jcomp1 = new JLabel ("Registrate");
+        jcomp2 = new JLabel ("Nombre:");
+        jcomp3 = new JLabel ("Apellido:");
+        jcomp4 = new JLabel ("Correo Electronico:");
+        jcomp5 = new JLabel ("Tipo de documento:");
+        jcomp6 = new JLabel ("num ID:");
+        jcomp7 = new JTextField (5);
+        jcomp8 = new JTextField (5);
+        jcomp9 = new JTextField (5);
+        jcomp10 = new JTextField (5);
+        jcomp11 = new JTextField (5);
+        jcomp12 = new JButton ("Enviar");
+        jcomp13 = new JTextField (5);
+        jcomp14 = new JButton("Next");
+        jcomp14.addActionListener(this);
+        jcomp12.addActionListener(this); 
+        
+        
+    
+      
+
+        //adjust size and set layout
+        setPreferredSize (new Dimension (250, 363));
+        setLayout (null);
+
+        //add components
+        add (jcomp1);
+        add (jcomp2);
+        add (jcomp3);
+        add (jcomp4);
+        add (jcomp5);
+        add (jcomp6);
+        add (jcomp7);
+        add (jcomp8);
+        add (jcomp9);
+        add (jcomp10);
+        add (jcomp11);
+        add (jcomp12);
+        add (jcomp13);
+        add (jcomp14);
+        
+
+        //set component bounds (only needed by Absolute Positioning)
+        jcomp1.setBounds (75, 10, 100, 25);
+        jcomp2.setBounds (10, 55, 100, 25);
+        jcomp3.setBounds (10, 100, 100, 25);
+        jcomp4.setBounds (10, 140, 120, 25);
+        jcomp5.setBounds (10, 175, 120, 30);
+        jcomp6.setBounds (10, 225, 100, 25);
+        jcomp7.setBounds (60, 50, 100, 25);
+        jcomp8.setBounds (65, 95, 100, 25);
+        jcomp9.setBounds (125, 135, 80, 25);
+        jcomp10.setBounds (125, 175, 80, 25);
+        jcomp11.setBounds (55, 220, 100, 25);
+        jcomp12.setBounds (55, 275, 100, 25);
+        jcomp13.setBounds (55, 315, 100,25);
+        jcomp14.setBounds (170,320, 70, 20);
+     
+    }
+
+    public void ingresarDatosPersonales (ActionEvent e){
+     String nombre = jcomp7.getText();
+     String apellido =jcomp8.getText();
+     String correoelectronico = jcomp9.getText();
+     String  tipodedocumento = jcomp10.getText();
+     String numID = jcomp11.getText();
+
+     
+    }
+    public void actionPerformed (ActionEvent e){
+        ingresarDatosPersonales(e);
+        jcomp13.setText("¡Registrado!");
+        if(e.getSource()== jcomp14){
+            JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            currentFrame.dispose();
+
+            JFrame frame = new JFrame ("MyPanel");
+            frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
+            frame.getContentPane().add (new Contraseña());
+            frame.pack();
+             frame.setVisible (true);
+
+        }
+     }
+        
+    
+
+    
+    public static void main (String[] args) {
+        JFrame frame = new JFrame ("MyPanel");
+        frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().add (new Usuario());
+        frame.pack();
+        frame.setVisible (true);
+
+       
+
+    }
+
+   
+}
