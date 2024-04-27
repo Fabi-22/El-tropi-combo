@@ -1,0 +1,101 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.event.*;
+
+public class Contraseña extends JPanel implements ActionListener{
+    private JButton crear;
+    private JLabel lcrear;
+    private JTextField campo1;
+    private JTextField campo2;
+    private JLabel crearcontraseña;
+    private JTextField campo3;
+    private JLabel verificar;
+    private JLabel titulo;
+    private JLabel aprobado;
+    private JButton next;
+    private String contraseña ="E123";
+    private String usuario = "Emily";
+
+    public Contraseña() {
+        //construct components
+        crear = new JButton ("Crear");
+        crear.addActionListener(this);
+        lcrear = new JLabel ("Crear usuario");
+        campo1 = new JTextField (5);
+        campo2 = new JTextField (5);
+        crearcontraseña = new JLabel ("Crear contraseña");
+        campo3 = new JTextField (5);
+        verificar = new JLabel ("Verificar contraseña");
+        titulo = new JLabel ("Orange Wallet");
+        aprobado = new JLabel (" verificador ");
+        next = new JButton("Next");
+        next.addActionListener(this);
+
+        //adjust size and set layout
+        setPreferredSize (new Dimension (197, 363));
+        setLayout (null);
+
+        //add components
+        add (crear);
+        add (lcrear);
+        add (campo1);
+        add (campo2);
+        add (crearcontraseña);
+        add (campo3);
+        add (verificar);
+        add (titulo);
+        add (aprobado);
+        add (next);
+
+        //set component bounds (only needed by Absolute Positioning)
+        crear.setBounds (40, 268, 115, 40);
+        lcrear.setBounds (55, 75, 100, 25);
+        campo1.setBounds (45, 100, 100, 25);
+        campo2.setBounds (45, 160, 100, 25);
+        crearcontraseña.setBounds (45, 135, 100, 25);
+        campo3.setBounds (45, 230, 100, 25);
+        verificar.setBounds (40, 200, 135, 25);
+        titulo.setBounds (50, 25, 100, 25);
+        aprobado.setBounds (35,315,100,25);
+        next.setBounds (115, 330, 70,25);
+    }
+   
+
+    public void actionPerformed(ActionEvent e){
+        String usuariosi = campo1.getText();
+        String contraseña1 =campo2.getText();
+        String contraseña2 = campo3.getText();
+        if(e.getSource()== crear){
+            if(contraseña1.equals(contraseña) && usuariosi.equals(usuario)){
+               aprobado.setText("Aprobado!");
+            }else{
+                aprobado.setText("Incorrecto!");
+            }
+        }
+            if(e.getSource()== next){
+                JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            currentFrame.dispose();
+
+            JFrame frame = new JFrame ("MyPanel");
+            frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
+            frame.getContentPane().add (new Sesion());
+            frame.pack();
+             frame.setVisible (true);
+
+        }
+    
+    
+    }
+    
+    
+
+
+    public static void main (String[] args) {
+        JFrame frame = new JFrame ("MyPanel");
+        frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().add (new Contraseña());
+        frame.pack();
+        frame.setVisible (true);
+    }
+}
