@@ -1,0 +1,109 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.event.*;
+
+public class DatosFinancieros extends JPanel implements ActionListener {
+    private JButton mostrar;
+    private JButton calcular;
+    private JLabel tiposi;
+    private JTextArea campo6;
+    private JLabel tipose;
+    private JTextArea campo7;
+    private JLabel numi;
+    private JTextArea campo8;
+    private JLabel nume;
+    private JTextArea campo9;
+    private JTextArea campo10;
+    private JTextArea campo11;
+
+    public DatosFinancieros() {
+        //construct components
+        mostrar = new JButton ("Mostrar");
+        calcular = new JButton ("Calcular");
+        tiposi = new JLabel ("Ingresa tus Tipos de Ingresos");
+        campo6 = new JTextArea (5, 5);
+        tipose = new JLabel ("Ingresa tus Tipos de Egresos");
+        campo7= new JTextArea (5, 5);
+        numi = new JLabel ("Tu Cantidad de Ingresos Promedio es:");
+        campo8 = new JTextArea (5, 5);
+        nume = new JLabel ("Tu Cantidad de Egresos Promedio es: ");
+        campo9 = new JTextArea (5, 5);
+        campo10 = new JTextArea (5, 5);
+        campo11 = new JTextArea (5, 5);
+        mostrar.addActionListener(this);
+        calcular.addActionListener(this);
+
+
+        //set components properties
+        tiposi.setToolTipText ("i");
+
+        //adjust size and set layout
+        setPreferredSize (new Dimension (771, 498));
+        setLayout (null);
+
+        //add components
+        add (mostrar);
+        add (calcular);
+        add (tiposi);
+        add (campo6);
+        add (tipose);
+        add (campo7);
+        add (numi);
+        add (campo8);
+        add (nume);
+        add (campo9);
+        add (campo10);
+        add (campo11);
+
+        //set component bounds (only needed by Absolute Positioning)
+        mostrar.setBounds (295, 250, 135, 30);
+        calcular.setBounds (200, 420, 105, 30);
+        tiposi.setBounds (90, 0, 185, 50);
+        campo6.setBounds (90, 40, 180, 70);
+        tipose.setBounds (490, 5, 180, 40);
+        campo7.setBounds (485, 40, 180, 70);
+        numi.setBounds (75, 125, 245, 45);
+        campo8.setBounds (85, 170, 190, 50);
+        nume.setBounds (465, 135, 240, 30);
+        campo9.setBounds (485, 170, 190, 50);
+        campo10.setBounds (130, 295, 475, 105);
+        campo11.setBounds (385, 420, 205, 35);
+    }
+    
+    public void actionPerformed(ActionEvent e) {
+        String tiposingresos = campo6.getText();
+        String tiposegresos =campo7.getText();
+        String cantidadingresos = campo8.getText();
+        String cantidaddeegresos =campo9.getText();
+        int cantidadi =Integer.parseInt(cantidadingresos);
+        int canti =Integer.parseInt(cantidaddeegresos);
+      
+        if(e.getSource()== mostrar){
+            String texto = "Los tipos de ingresos que ingresaste son:\n" + tiposingresos + "\n";
+        texto += "Y tus tipos de egresos son:\n" + tiposegresos;
+        campo10.setText(texto);
+            
+        }
+
+        if(e.getSource()== calcular){
+            int calculo = cantidadi - canti;
+            String calculo2 =Integer.toString(calculo);
+            campo11.setText(calculo2);
+        }
+
+    }
+
+    public static void main (String[] args) {
+        JFrame frame = new JFrame ("MyPanel");
+        frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().add (new DatosFinancieros());
+        frame.pack();
+        frame.setVisible (true);
+    }
+
+
+
+    
+    
+}
