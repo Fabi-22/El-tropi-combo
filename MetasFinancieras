@@ -1,0 +1,132 @@
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.event.*;
+
+public class MetasFinancieras extends JPanel implements ActionListener {
+    private JButton next;
+    private JLabel titulo;
+    private JRadioButton bton20;
+    private JRadioButton bton40;
+    private JRadioButton bton60;
+    private JRadioButton bton100;
+    private JLabel titulo2;
+    private JTextField monto;
+    private JLabel titulo3;
+    private JTextArea confirmarmetas;
+    private JButton mostrar;
+    private static String cantidadingresos;
+    private static String cantidaddeegresos;
+    
+
+    public MetasFinancieras(String cantidadingresos, String cantidaddeegresos) {
+        //construct components
+        next = new JButton("Next");
+        mostrar = new JButton("Mostrar");
+        titulo = new JLabel("Tus Metas ");
+        bton20 = new JRadioButton("Completa un 20% de tu monto ideal");
+        bton40 = new JRadioButton("Completa un 40% de tu monto ideal");
+        bton60 = new JRadioButton("Completa un 60% de tu monto ideal");
+        bton100 = new JRadioButton("Completa un 100% de tu monto ideal");
+        titulo2 = new JLabel("Ingresa tu monto ideal");
+        monto = new JTextField(5);
+        titulo3 = new JLabel("(Dinero que esperas tener libre a fin de mes)");
+        confirmarmetas = new JTextArea(5, 5);
+        this.cantidadingresos = cantidadingresos;
+        this.cantidaddeegresos = cantidaddeegresos;
+        next.addActionListener(this);
+        mostrar.addActionListener(this);
+
+        //adjust size and set layout
+        setPreferredSize(new Dimension(667, 361));
+        setLayout(null);
+
+        //add components
+        add(next);
+        add(titulo);
+        add(bton20);
+        add(bton40);
+        add(bton60);
+        add(bton100);
+        add(titulo2);
+        add(monto);
+        add(titulo3);
+        add(confirmarmetas);
+        add(mostrar);
+
+        //set component bounds (only needed by Absolute Positioning)
+        next.setBounds(535, 285, 105, 35);
+        titulo.setBounds(315, 20, 100, 25);
+        bton20.setBounds(55, 60, 230, 30);
+        bton40.setBounds(55, 90, 230, 20);
+        bton60.setBounds(55, 120, 225, 25);
+        bton100.setBounds(55, 150, 230, 25);
+        titulo2.setBounds(445, 70, 130, 35);
+        monto.setBounds(460, 105, 100, 25);
+        titulo3.setBounds(390, 125, 280, 40);
+        confirmarmetas.setBounds(60, 190, 225, 130);
+        mostrar.setBounds(80, 325, 105, 20);
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        String ideal = monto.getText();
+        if (e.getSource() == mostrar) {
+            if (bton20.isSelected() && bton40.isSelected() && bton60.isSelected() && bton100.isSelected()) {
+                confirmarmetas.setText("Completar en 20%\n" + "Completar un 40%\n" + "Completar un 60%\n" + "Completar un 100%");
+            } else if (bton20.isSelected() && bton40.isSelected() && bton60.isSelected()) {
+                confirmarmetas.setText("Completar en 20%\n" + "Completar un 40%\n" + "Completar un 60%\n");
+            } else if (bton20.isSelected() && bton40.isSelected()) {
+                confirmarmetas.setText("Completar en 20%\n" + "Completar un 40%\n");
+            } else if (bton20.isSelected() && bton100.isSelected()) {
+                confirmarmetas.setText("Completar en 20%\n" + "Completar un 100%");
+            } else if (bton20.isSelected() && bton60.isSelected()) {
+                confirmarmetas.setText("Completar en 20%\n" + "Completar un 60%\n");
+            } else if (bton20.isSelected() && bton40.isSelected()) {
+                confirmarmetas.setText("Completar en 20%\n" + "Completar un 40%\n");
+            } else if (bton20.isSelected() && bton100.isSelected()) {
+                confirmarmetas.setText("Completar en 20%\n" + "Completar un 100%");
+            } else if (bton40.isSelected() && bton60.isSelected()) {
+                confirmarmetas.setText("Completar un 40%\n" + "Completar un 60%\n");
+            } else if (bton60.isSelected() && bton100.isSelected()) {
+                confirmarmetas.setText("Completar un 60%\n" + "Completar un 100%");
+            } else if (bton40.isSelected() && bton100.isSelected()) {
+                confirmarmetas.setText("Completar un 40%\n" + "Completar un 100%");
+            } else if (bton20.isSelected()) {
+                confirmarmetas.setText("Completar en 20%\n");
+            } else if (bton40.isSelected()) {
+                confirmarmetas.setText("Completar un 40%\n");
+            } else if (bton60.isSelected()) {
+                confirmarmetas.setText("Completar un 60%\n");
+            } else if (bton100.isSelected()) {
+                confirmarmetas.setText("Completar un 100%");
+            } else if (bton20.isSelected() && bton40.isSelected() && bton60.isSelected()) {
+                confirmarmetas.setText("Completar en 20%\n" + "Completar un 40%\n" + "Completar un 60%\n");
+            } else if (bton20.isSelected() && bton40.isSelected() && bton60.isSelected() && bton100.isSelected()) {
+                confirmarmetas.setText("Completar en 20%\n" + "Completar un 60%\n" + "Completar un 100%");
+            } else if (bton20.isSelected() && bton40.isSelected() && bton60.isSelected() && bton100.isSelected()) {
+                confirmarmetas.setText("Completar en 20%\n" + "Completar un 40%\n" + "Completar un 100%");
+            } else if (bton40.isSelected() && bton60.isSelected() && bton100.isSelected()) {
+                confirmarmetas.setText("Completar un 40%\n" + "Completar un 60%\n" + "Completar un 100%");
+            } else if (bton20.isSelected() && bton60.isSelected() && bton100.isSelected()) {
+                confirmarmetas.setText("Completar un 20%\n" + "Completar un 60%\n" + "Completar un 100%");
+            }
+        }
+        if (e.getSource() == next) {
+            JFrame frame = new JFrame("MyPanel");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.getContentPane().add(new Escritorio(cantidadingresos, cantidaddeegresos, ideal));
+            frame.pack();
+            frame.setVisible(true);
+        }
+    }
+
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("MyPanel");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().add(new MetasFinancieras(cantidadingresos, cantidaddeegresos));
+        frame.pack();
+        frame.setVisible(true);
+    }
+}
