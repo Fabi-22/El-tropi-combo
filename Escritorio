@@ -1,0 +1,175 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.event.*;
+
+public class Escritorio extends JPanel implements ActionListener {
+    private JButton metas;
+    private JLabel titulo1;
+    private JLabel titulo2;
+    private JLabel titulo3;
+    private JLabel titulo4;
+    private JLabel titulo5;
+    private JTextField ingre;
+    private JTextField egre;
+    private JTextField total;
+    private JTextField montoi;
+    private JTextField falta;
+    private JLabel completadas;
+    private JTextArea printcomple;
+    private JButton calcular;
+    private JLabel titulo7;
+    private JButton mostrar;
+    private JButton completadas2;
+    private static String cantidadingresos;
+    private static String cantidaddeegresos;
+    private static String ideal;
+
+    public Escritorio(String cantidadingresos, String cantidaddeegresos, String ideal) {
+        this.cantidadingresos = cantidadingresos;
+        this.cantidaddeegresos = cantidaddeegresos;
+        this.ideal = ideal;
+        completadas2 = new JButton("metas completadas");
+        mostrar = new JButton("mostrar tu info");
+        metas = new JButton("Metas");
+        titulo1 = new JLabel("Ingresos");
+        titulo2 = new JLabel("Egresos");
+        titulo3 = new JLabel("Total");
+        titulo4 = new JLabel("Tu monto ideal es:");
+        titulo5 = new JLabel("Para lograrlo");
+        ingre = new JTextField(5);
+        egre = new JTextField(5);
+        total = new JTextField(5);
+        montoi = new JTextField(5);
+        falta = new JTextField(5);
+        completadas = new JLabel("Metas completadas:");
+        printcomple = new JTextArea(5, 5);
+        calcular = new JButton("Calcular");
+        titulo7 = new JLabel("te falta:");
+        calcular.addActionListener(this);
+        metas.addActionListener(this);
+        mostrar.addActionListener(this);
+        completadas2.addActionListener(this);
+
+        setPreferredSize(new Dimension(667, 361));
+        setLayout(null);
+
+        add(metas);
+        add(mostrar);
+        add(titulo1);
+        add(titulo2);
+        add(titulo3);
+        add(titulo4);
+        add(titulo5);
+        add(ingre);
+        add(egre);
+        add(total);
+        add(montoi); // Aquí añades el campo montoi
+        add(falta);
+        add(completadas);
+        add(printcomple);
+        add(calcular);
+        add(titulo7);
+        add(completadas2);
+
+        completadas2.setBounds(175, 250, 150, 30);
+        metas.setBounds(330, 285, 135, 40);
+        mostrar.setBounds(330, 250, 135, 30);
+        titulo1.setBounds(40, 10, 100, 25);
+        titulo2.setBounds(40, 65, 100, 25);
+        titulo3.setBounds(50, 120, 100, 25);
+        titulo4.setBounds(15, 165, 135, 30);
+        titulo5.setBounds(15, 265, 100, 25);
+        ingre.setBounds(15, 35, 100, 25);
+        egre.setBounds(15, 90, 100, 25);
+        total.setBounds(15, 140, 100, 25);
+        montoi.setBounds(15, 190, 100, 25);
+        falta.setBounds(15, 305, 100, 25);
+        completadas.setBounds(335, 30, 125, 25);
+        printcomple.setBounds(175, 70, 450, 150);
+        calcular.setBounds(15, 230, 100, 25);
+        titulo7.setBounds(15, 280, 100, 25);
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == metas) {
+            JFrame frame = new JFrame("MyPanel");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.getContentPane().add(new MetasFinancieras(cantidadingresos, cantidaddeegresos));
+            frame.pack();
+            frame.setVisible(true);
+        }
+
+        if (e.getSource() == mostrar) {
+            ingre.setText(cantidadingresos);
+            egre.setText(cantidaddeegresos);
+            montoi.setText(ideal); 
+
+            int cantidadi = Integer.parseInt(cantidadingresos);
+            int canti = Integer.parseInt(cantidaddeegresos);
+
+            int calculo = cantidadi - canti;
+            String calculo2 = Integer.toString(calculo);
+            total.setText(calculo2);
+
+        }
+        if (e.getSource()== calcular){
+            int cantidadi = Integer.parseInt(cantidadingresos);
+            int canti = Integer.parseInt(cantidaddeegresos);
+
+            int calculo = cantidadi -canti;
+            String calculo2 =Integer.toString(calculo);
+
+           int montomayor =Integer.parseInt(ideal);
+           int total1 = Integer.parseInt(calculo2);
+
+           int falta1 = montomayor - total1;
+           String falta2 = Integer.toString(falta1);
+           falta.setText(falta2);
+
+        }if (e.getSource() == completadas2) {
+            // Cálculos
+            int cantidadi = Integer.parseInt(cantidadingresos);
+            int canti = Integer.parseInt(cantidaddeegresos);
+            int calculo = cantidadi - canti;
+            String calculo2 = Integer.toString(calculo);
+            int montomayor = Integer.parseInt(ideal);
+            int total1 = Integer.parseInt(calculo2);
+            int falta1 = montomayor - total1;
+            String falta2 = Integer.toString(falta1);
+        
+            int porcentajearriba = falta1 * 100;
+
+            int porcentaje = porcentajearriba / montomayor;
+            int porcentaje1= (100 - porcentaje);
+            String superporcentaje = Integer.toString(porcentaje1);
+            
+            // Construcción del texto
+            StringBuilder texto = new StringBuilder("El porcentaje total que llevas completado es de un " + superporcentaje + "%\n");
+            texto.append("La meta más grande que has completado es:\n");
+            if (porcentaje1 >= 20 && porcentaje1 <= 39) {
+                texto.append("¡Completado en un 20% :)\n");
+            } else if (porcentaje1 >= 40 && porcentaje1 <= 59) {
+                texto.append("¡Completado en un 40%! :)\n");
+            } else if (porcentaje1 >= 60 && porcentaje1 <=99 ) {
+                texto.append("¡Completado en un 60%! :)\n");
+            } else if (porcentaje1 == 100) {
+                texto.append("¡Completado en un 100%! :)\n");
+            } else if (porcentaje1 < 19 ) {
+                texto.append("Aun no has completado ninguna meta :( \n");
+            }
+        
+            // Establecer el texto en el JTextArea
+            printcomple.setText(texto.toString());
+        }
+     
+    }
+
+    public static  void main(String[] args) {
+        JFrame frame = new JFrame("MyPanel");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().add(new Escritorio(cantidadingresos, cantidaddeegresos,ideal));
+        frame.pack();
+        frame.setVisible(true);
+    }
+}
