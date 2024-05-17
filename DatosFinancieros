@@ -5,6 +5,7 @@ import javax.swing.event.*;
 
 public class DatosFinancieros extends JPanel implements ActionListener {
     private JButton mostrar;
+    private JButton next;
     private JButton calcular;
     private JLabel tiposi;
     private JTextArea campo6;
@@ -16,9 +17,11 @@ public class DatosFinancieros extends JPanel implements ActionListener {
     private JTextArea campo9;
     private JTextArea campo10;
     private JTextArea campo11;
+    public String cantidadingresos;
 
     public DatosFinancieros() {
         //construct components
+        next = new JButton ("Next");
         mostrar = new JButton ("Mostrar");
         calcular = new JButton ("Calcular");
         tiposi = new JLabel ("Ingresa tus Tipos de Ingresos");
@@ -33,6 +36,7 @@ public class DatosFinancieros extends JPanel implements ActionListener {
         campo11 = new JTextArea (5, 5);
         mostrar.addActionListener(this);
         calcular.addActionListener(this);
+        next.addActionListener(this);
 
 
         //set components properties
@@ -44,6 +48,7 @@ public class DatosFinancieros extends JPanel implements ActionListener {
 
         //add components
         add (mostrar);
+        add (next);
         add (calcular);
         add (tiposi);
         add (campo6);
@@ -58,6 +63,7 @@ public class DatosFinancieros extends JPanel implements ActionListener {
 
         //set component bounds (only needed by Absolute Positioning)
         mostrar.setBounds (295, 250, 135, 30);
+        next.setBounds (535, 420, 105, 35); 
         calcular.setBounds (200, 420, 105, 30);
         tiposi.setBounds (90, 0, 185, 50);
         campo6.setBounds (90, 40, 180, 70);
@@ -91,9 +97,21 @@ public class DatosFinancieros extends JPanel implements ActionListener {
             String calculo2 =Integer.toString(calculo);
             campo11.setText(calculo2);
         }
+        
+        if(e.getSource()== next){
+            JFrame frame = new JFrame ("MyPanel");
+            frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
+            frame.getContentPane().add (new MetasFinancieras(cantidadingresos, cantidaddeegresos));
+            frame.pack();
+            frame.setVisible (true);  
+        }
 
     }
 
+    public String getCantidadingresos() {
+        return cantidadingresos;
+    }
+    
     public static void main (String[] args) {
         JFrame frame = new JFrame ("MyPanel");
         frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
